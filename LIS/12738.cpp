@@ -4,22 +4,20 @@
 using namespace std;
 
 int main(){
-	cin.tie();
-	int n, tmp, res =0;
+	int n;
 	cin>>n;
-	vector<int>ans;
-	ans.push_back(-2e9);
-	for (int i=0; i<n; ++i){
-		cin>>tmp;
-		if(ans.back() <tmp){
-			ans.push_back(tmp);
-			res++;
-		}
+	vector<int>v(n);
+	for(int i=0; i<n; ++i)
+		cin>>v[i];
+	vector<int>ans(1,-2e9);
+	for(int num : v){
+		if(num > ans.back())
+			ans.push_back(num);
 		else{
-			auto it = lower_bound(ans.begin(), ans.end(), tmp);
-			*it =x;
+			vector<int>::iterator it = lower_bound(ans.begin(), ans.end(), num);
+			*it = num;
 		}
 	}
-	cout<<res;
+	cout<<ans.size()-1;
 	return 0;
 }
