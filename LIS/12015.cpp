@@ -1,4 +1,4 @@
-//12015 가장 긴 증가하는 수열2
+//12015 가장 긴 증가하는 수열2 
 
 #include<bits/stdc++.h>
 using namespace std;
