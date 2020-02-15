@@ -1,0 +1,22 @@
+//1740 거듭제곱
+#include <iostream>
+using namespace std;
+typedef long long ll;
+
+int main() {
+	ll n;
+	ll three = 1;
+	int mask = 1;
+	ll sum =0;
+	cin>>n;
+	for(int i=0; n!=0 ; ++i){
+		if(n & mask == 1){
+			sum+=three;
+		}
+		three*=3;
+		n = n>>1;
+		//printf("Three = %d n == %d \n", three, n);
+	}
+	cout<<sum;
+	return 0;
+}
