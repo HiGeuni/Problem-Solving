@@ -10,3 +10,5 @@ for _ in range(tc):
         for j in range(1,n):
             ar[j] += ar[j-1]
     print(ar[-1])
+
+    
