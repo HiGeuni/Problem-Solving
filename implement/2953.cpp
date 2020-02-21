@@ -20,3 +20,4 @@ int main(){
 	cout<<num<<" "<<ans<<endl;
 	return 0;
 }
+
