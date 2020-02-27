@@ -1,6 +1,5 @@
 #2875 대회 or 인턴
 #20200227
-
 n, m, k = map(int, input().split())
 
 while k!=0:
