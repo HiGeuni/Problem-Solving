@@ -5,7 +5,7 @@ l = int(input())
 ls = sorted(list(map(int, input().split())))
 n = int(input())
 
-s =0
+s = 1
 
 if n in ls:
     print(0)
