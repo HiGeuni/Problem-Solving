@@ -11,3 +11,4 @@ if flag:
         else:
             s[i] = s[i].lower()
 print(''.join(s))
+ 
