@@ -1,52 +1,46 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
-#include<queue>
-#include<utility>
+#include<bits/stdc++.h>
 using namespace std;
-#define MAX 2e9
-typedef pair<int, int> P;
-vector<P>d[300100];
-int n, m, x, res = 0;
-int u, v, w, dst;
-vector<int>dis(20001);
-void dijkstra();
 
-int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	cin >> n >> m;
-	for (int i = 0; i < m;i++) {
-		cin >> u >> v >> w;
-		d[u].push_back(make_pair(v, w));
-	}
-	cin>>x>>dst;
-	for (int i = 1; i <= n; i++) {
-		dis[i] = MAX;
-	}
-	dis[x] = 0;
-	dijkstra();
-	cout<<dis[dst];
-	return 0;
-}
+typedef pair<int, int>pii;
 
-void dijkstra() {
-	priority_queue<P>pq;
-	pq.push(make_pair(0, x));
+vector<vector<pii>>v;
+vector<int>visited;
+
+void dijkstra(int start, int end) {
+	priority_queue<pii>pq;
+	pq.push(make_pair(0, start));
 
 	while (!pq.empty()) {
 		int cur = pq.top().second;
 		int weight = -1 * pq.top().first;
 		pq.pop();
+		if (visited[cur] < weight) continue;
+		for (int i = 0; i < v[cur].size(); i++) {
+			int next_weights = visited[cur] + v[cur][i].second;
+			int before_change = visited[v[cur][i].first];
 
-		for (int i = 0; i < d[cur].size(); i++) {
-			int val = dis[cur]+d[cur][i].second;
-			int be_val = dis[d[cur][i].first];
-			if (val < be_val) {
-				dis[d[cur][i].first] = val;
-				pq.push({ -1 * val, d[cur][i].first });
+			if (next_weights < before_change) {
+				visited[v[cur][i].first] = next_weights;
+				pq.push({ -1 * next_weights, v[cur][i].first });
 			}
 		}
-
 	}
+}
+
+int main() {
+	cin.tie(NULL);
+	ios_base::sync_with_stdio(false);
+	int n, m, s, d, w, start, end;
+	cin >> n >> m;
+	v.resize(n + 1);
+	visited.resize(n + 1, 2e9);
+	for (int i = 0; i < m; ++i) {
+		cin >> s >> d >> w;
+		v[s].push_back({ d, w });
+	}
+	cin >> start >> end;
+	visited[start] = 0;
+	dijkstra(start, end);
+	cout << visited[end];
+	return 0;
 }
